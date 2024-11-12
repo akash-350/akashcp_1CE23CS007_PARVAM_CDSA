@@ -1,0 +1,19 @@
+ASCII Characters:
+
+#include<stdio.h>
+int main(){
+    char ch;
+    printf("enter a character:");
+    scanf("%c",&ch);
+    if(ch>=97&&ch<=122){
+        printf("it is a lowercase alphabet.\n");
+        
+    }
+    else if(ch>=65&&ch<=90){
+        printf("it is an uppercase alphabet.\n");
+    }
+    else{
+        printf("it is a special character.\n");
+    }
+    return 0;
+}

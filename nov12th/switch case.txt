@@ -1,0 +1,51 @@
+switch case:
+
+#include <stdio.h>
+
+int main() {
+    char choice;
+    float num1, num2, result;
+
+    printf("Select an operation to perform:\n");
+    printf("a. Add two numbers\n");
+    printf("b. Multiply two numbers\n");
+    printf("c. Divide two numbers\n");
+    printf("d. Subtract two numbers\n");
+    printf("Enter your choice (a/b/c/d): ");
+    
+    scanf(" %c", &choice); 
+
+    printf("Enter two numbers: ");
+    scanf("%f %f", &num1, &num2);
+
+    switch(choice) {
+        case 'a':
+            result = num1 + num2;
+            printf("Result: %.2f + %.2f = %.2f\n", num1, num2, result);
+            break;
+        
+        case 'b':
+            result = num1 * num2;
+            printf("Result: %.2f * %.2f = %.2f\n", num1, num2, result);
+            break;
+        
+        case 'c':
+            if (num2 != 0) {
+                result = num1 / num2;
+                printf("Result: %.2f / %.2f = %.2f\n", num1, num2, result);
+            } else {
+                printf("Error: Division by zero is not allowed!\n");
+            }
+            break;
+        
+        case 'd':
+            result = num1 - num2;
+            printf("Result: %.2f - %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        default:
+            printf("Invalid choice! Please select a valid operation (a/b/c/d).\n");
+    }
+
+    return 0;
+}

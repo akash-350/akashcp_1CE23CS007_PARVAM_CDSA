@@ -1,0 +1,25 @@
+concatenation 2 strings:
+
+#include <stdio.h>
+
+void concatStr(char *dest, const char *src) {
+    int length, j;
+
+    for (length = 0; dest[length] != '\0'; length++);
+
+    for (j = 0; src[j] != '\0'; j++, length++) {
+        dest[length] = src[j];
+    }
+
+    dest[length] = '\0';
+}
+
+int main() {
+    char dest[100] = "city";
+    char src[100] = "college";
+
+    concatStr(dest, src);
+
+    printf("Concatenated String: %s\n", dest);
+    return 0;
+}
