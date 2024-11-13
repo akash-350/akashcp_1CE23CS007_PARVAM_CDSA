@@ -1,0 +1,116 @@
+linked list:
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Node {
+    char note[100];
+    struct Node* next;
+} Node;
+
+Node* head = NULL;
+
+Node* createNode(char *note) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    strcpy(newNode->note, note);
+    newNode->next = NULL;
+    return newNode;
+}
+void addNote() {
+    char note[100];
+    printf("Enter your note: ");
+    scanf(" %[^\n]", note);
+
+    Node* newNode = createNode(note);
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    printf("Note added successfully!\n");
+}
+
+void deleteNote() {
+    char note[100];
+    printf("Enter the note to delete: ");
+    scanf(" %[^\n]", note);
+
+    Node* temp = head;
+    Node* prev = NULL;
+
+    while (temp != NULL && strcmp(temp->note, note) != 0) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf("Note not found!\n");
+        return;
+    }
+
+    if (prev == NULL) {
+        head = temp->next;
+    } else {
+        prev->next = temp->next;
+    }
+    free(temp);
+    printf("Note deleted successfully!\n");
+}
+
+void findNote() {
+    char note[100];
+    printf("Enter the note to find: ");
+    scanf(" %[^\n]", note);
+
+    Node* temp = head;
+    while (temp != NULL) {
+        if (strcmp(temp->note, note) == 0) {
+            printf("Note found: %s\n", temp->note);
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("Note not found!\n");
+}
+
+void displayMenu() {
+    printf("\nMenu:\n");
+    printf("a: Add a note\n");
+    printf("b: Delete a note\n");
+    printf("c: Find a note\n");
+    printf("e: Exit\n");
+}
+
+int main() {
+    char choice;
+    while (1) {
+        displayMenu();
+        printf("Enter your choice: ");
+        scanf(" %c", &choice);
+
+        switch (choice) {
+            case 'a':
+                addNote();
+                break;
+            case 'b':
+                deleteNote();
+                break;
+            case 'c':
+                findNote();
+                break;
+            case 'e':
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice! Please try again.\n");
+        }
+    }
+    return 0;
+}
